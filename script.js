@@ -1,12 +1,13 @@
 //Rock, Paper, Scissors Console Game
 //score holder
-let score = [];
+let times = 0;
 let playerScore = 0;
 let computerScore = 0;
-//List of options
-const options = ['rock', 'paper', 'scissors'];
+
 
 //Functions to get the choices
+//List of options
+const options = ['rock', 'paper', 'scissors'];
 
 function getComputerChoice(){
     let botChoice = options[Math.floor(Math.random()*3)];
@@ -14,21 +15,16 @@ function getComputerChoice(){
     return botChoice;
 }
 
+//button activations
 document.getElementById('rock').onclick =  getPlayerChoice;
 document.getElementById('paper').onclick = getPlayerChoice;
 document.getElementById('scissors').onclick = getPlayerChoice;
-document.getElementById('reset').onclick = resetGame;
 
-//score varis
+//score board
 let scoreWindow = document.querySelector('.scores');
 scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+let resultWindow = document.querySelector('.results');
 
-
-function resetGame(){
-    playerScore = 0;
-    computerScore = 0;
-    scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
-}
 
 function getPlayerChoice(){
         var playerChoice = this.id;
@@ -45,14 +41,35 @@ function getPlayerChoice(){
                 computerScore++;
                 alert("You lose this round!");}
         scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+        times++;
+        console.log(times);
+        checkWinner();
         return (computerScore, playerScore);
-            }
+}
 
 
  function renderScore(computerScore, playerScore) {
         scoreWindow.innerText = `${computerScore} : ${playerScore}`;
-      }
+}
 
+function checkWinner(){
+    if(times === 5){
+       if(playerScore > computerScore){
+        resultWindow.innerText = `You won!`
+       } else if (playerScore < computerScore){
+        resultWindow.innerText = `You lost!`;
+    } else (playerScore === computerScore)
+        resultWindow.innerText = `It's a draw`;
+    resetScore()
+    }
+}
+
+function resetScore(){
+    playerScore = 0;
+    computerScore = 0;
+    times = 0;
+
+}
 
 //play game x Times
 function game(gameTimes){
@@ -61,7 +78,7 @@ function game(gameTimes){
     
     //set score
         for (let i = 0; i < gameTimes; i++){
-        let result = playRound();
+        let result = getPlayerChoice();
         console.log(result);
         if (result === "You won this round!"){
             score.push(1);}
