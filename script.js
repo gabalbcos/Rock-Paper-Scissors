@@ -17,21 +17,20 @@ function getComputerChoice(){
 document.getElementById('rock').onclick =  getPlayerChoice;
 document.getElementById('paper').onclick = getPlayerChoice;
 document.getElementById('scissors').onclick = getPlayerChoice;
-document.getElementById('reset').onclick = resetGame();
+document.getElementById('reset').onclick = resetGame;
 
 //score varis
-var playerPoints = document.getElementById('playerScore');
-var computerPoints = document.getElementById('computerScore');
+let scoreWindow = document.querySelector('.scores');
+scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+
 
 function resetGame(){
-    playerPoints.textContent = '0';
-    computerPoints.textContent = '0';
- 
+    playerScore = 0;
+    computerScore = 0;
+    scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
 }
 
 function getPlayerChoice(){
-    playerPoints.textContent = playerScore;
-    computerPoints.textContent = computerScore; 
         var playerChoice = this.id;
         let computerChoice = getComputerChoice();
         //Round Comparison
@@ -45,9 +44,14 @@ function getPlayerChoice(){
             else {
                 computerScore++;
                 alert("You lose this round!");}
-             playerPoints.textContent = playerScore;
-             computerPoints.textContent = computerScore;   
-    }
+        scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+        return (computerScore, playerScore);
+            }
+
+
+ function renderScore(computerScore, playerScore) {
+        scoreWindow.innerText = `${computerScore} : ${playerScore}`;
+      }
 
 
 //play game x Times
