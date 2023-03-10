@@ -1,7 +1,8 @@
 //Rock, Paper, Scissors Console Game
 //score holder
 let score = [];
-
+let playerScore = 0;
+let computerScore = 0;
 //List of options
 const options = ['rock', 'paper', 'scissors'];
 
@@ -13,30 +14,41 @@ function getComputerChoice(){
     return botChoice;
 }
 
-function getPlayerChoice(){
-    let playerMove = prompt(`Rock, Paper or Scissors?`).toLowerCase();
-   //check for a valid input from the options list
-    while (options.indexOf(playerMove) === -1) {
-        playerMove = prompt('Select a valid option: Rock, Paper or Scissor.');}
-    console.log(`You choose: ${playerMove}`);
-    return playerMove;
+document.getElementById('rock').onclick =  getPlayerChoice;
+document.getElementById('paper').onclick = getPlayerChoice;
+document.getElementById('scissors').onclick = getPlayerChoice;
+document.getElementById('reset').onclick = resetGame();
+
+//score varis
+var playerPoints = document.getElementById('playerScore');
+var computerPoints = document.getElementById('computerScore');
+
+function resetGame(){
+    playerPoints.textContent = '0';
+    computerPoints.textContent = '0';
+ 
 }
 
-//play one round of the game
-function playRound(){
-    //get computer + player choice 
-    let playerChoice = getPlayerChoice();
-    let computerChoice = getComputerChoice();
-    //Round Comparison
-    if (playerChoice === computerChoice){
-        return "It's a draw!";}
-        else if ((playerChoice === 'paper' && computerChoice === 'rock')||
-        (playerChoice === 'rock' && computerChoice === 'scissors')||
-        (playerChoice === 'scissors' && computerChoice === 'paper')) {
-            return "You won this round!";}
-        else {
-            return "You lose this round!";}
-}
+function getPlayerChoice(){
+    playerPoints.textContent = playerScore;
+    computerPoints.textContent = computerScore; 
+        var playerChoice = this.id;
+        let computerChoice = getComputerChoice();
+        //Round Comparison
+        if (playerChoice === computerChoice){
+            alert("It's a draw!");}
+            else if ((playerChoice === 'paper' && computerChoice === 'rock')||
+            (playerChoice === 'rock' && computerChoice === 'scissors')||
+            (playerChoice === 'scissors' && computerChoice === 'paper')) {
+                playerScore++;
+                alert("You won this round!");}
+            else {
+                computerScore++;
+                alert("You lose this round!");}
+             playerPoints.textContent = playerScore;
+             computerPoints.textContent = computerScore;   
+    }
+
 
 //play game x Times
 function game(gameTimes){
