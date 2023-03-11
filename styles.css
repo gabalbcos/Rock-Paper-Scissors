@@ -2,6 +2,8 @@ html {
     background: linear-gradient(0deg, rgba(2,0,36,1) 57%, rgba(7,0,148,1) 100%);
     box-sizing: border-box;
     height: 100%;
+    color: yellow;
+    margin: 0;
 }
 
 .buttons_menu {
@@ -33,6 +35,12 @@ header{
     color: yellow;
     font-size: 4em;
     font-weight: 800;
+    text-align: center;
+    padding: 2em;
+}
+
+#reset{
+    display: block;
 }
 
 .play_button{
@@ -59,4 +67,31 @@ div.buttons_menu p{
     font-weight: 800;
     font-size: 1.5em;
 
+}
+
+.hidden {
+    display: none;
+    transition: 2s;
+}
+
+p{
+    text-align: center;
+    display: inline-block;
+    font-size: 2em;
+    margin: 0;
+}
+
+#reset{
+    margin: auto;
+    background: radial-gradient(circle, rgba(7,0,148,1) 57%, rgba(2,0,36,1) 100%);
+    justify-content: center;
+    border-radius: 20px;
+    height: 100%;
+    color: yellow;
+    font-weight: 700;
+}
+
+#final_message{
+    height: 1em;
+    text-align: center;
 }

@@ -19,11 +19,15 @@ function getComputerChoice(){
 document.getElementById('rock').onclick =  getPlayerChoice;
 document.getElementById('paper').onclick = getPlayerChoice;
 document.getElementById('scissors').onclick = getPlayerChoice;
+document.getElementById('reset').onclick = resetScore;
 
 //score board
-let scoreWindow = document.querySelector('.scores');
+let scoreWindow = document.querySelector('.scores');;
 scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
 let resultWindow = document.querySelector('.results');
+let firstScreen = document.getElementById('first_screen');
+let secondScreen = document.getElementById('final_message');
+
 
 
 function getPlayerChoice(){
@@ -40,58 +44,40 @@ function getPlayerChoice(){
             else {
                 computerScore++;
                 alert("You lose this round!");}
-        scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
         times++;
-        console.log(times);
-        checkWinner();
-        return (computerScore, playerScore);
-}
+        scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+                checkWinner();
+ }
 
 
- function renderScore(computerScore, playerScore) {
-        scoreWindow.innerText = `${computerScore} : ${playerScore}`;
+function renderScore(computerScore, playerScore) {
+        scoreWindow.innerText = `${playerScore}  : ${computerScore}`;
 }
 
 function checkWinner(){
     if(times === 5){
        if(playerScore > computerScore){
         resultWindow.innerText = `You won!`
+        return showResult();
        } else if (playerScore < computerScore){
         resultWindow.innerText = `You lost!`;
-    } else (playerScore === computerScore)
-        resultWindow.innerText = `It's a draw`;
-    resetScore()
-    }
+        return showResult();
+    } else resultWindow.innerText = `It's a draw`;
+        return showResult();
+ }
 }
 
 function resetScore(){
     playerScore = 0;
     computerScore = 0;
     times = 0;
-
+    secondScreen.classList.add('hidden')
+    firstScreen.classList.remove('hidden')
+    scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
 }
 
-//play game x Times
-function game(gameTimes){
-    //reset score
-    score = [];
-    
-    //set score
-        for (let i = 0; i < gameTimes; i++){
-        let result = getPlayerChoice();
-        console.log(result);
-        if (result === "You won this round!"){
-            score.push(1);}
-        else if (result === "You lose this round!") {
-            score.push(-1);    
-        } else { score.push(0);}
-        console.log("Your score:" + score.reduce(function(a, b){return a + b}) + `/${gameTimes}`);
-       }
-    //end game result
-        let totalScore = score.reduce(function(a, b){return a + b});
-        if (totalScore > 0) {
-            console.log("You won the game!");
-        } else if (totalScore === 0){
-            console.log("No winners in the game!");
-        } else {console.log("You lost the game!");}
+function showResult(){
+    secondScreen.classList.remove('hidden');
+    firstScreen.classList.add('hidden');
 }
+
