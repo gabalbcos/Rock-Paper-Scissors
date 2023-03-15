@@ -22,9 +22,12 @@ document.getElementById('scissors').onclick = getPlayerChoice;
 document.getElementById('reset').onclick = resetScore;
 
 //score board
-let scoreWindow = document.querySelector('.scores');;
-scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
-let resultWindow = document.querySelector('.results');
+let playerScoreWindow = document.querySelector('.user_score');
+let aiScoreWindow = document.querySelector('.ai_score');
+let playerScoreNumber = document.querySelector('.score_p');
+let aiScoreNumber = document.querySelector('.score_c');
+let roundResult = document.querySelector('.round_alert');
+let resultWindow = document.querySelector('.final_message');
 let firstScreen = document.getElementById('first_screen');
 let secondScreen = document.getElementById('final_message');
 
@@ -35,35 +38,37 @@ function getPlayerChoice(){
         let computerChoice = getComputerChoice();
         //Round Comparison
         if (playerChoice === computerChoice){
-            alert("It's a draw!");}
+            roundResult.textContent = "It's a draw!";}
             else if ((playerChoice === 'paper' && computerChoice === 'rock')||
             (playerChoice === 'rock' && computerChoice === 'scissors')||
             (playerChoice === 'scissors' && computerChoice === 'paper')) {
                 playerScore++;
-                alert("You won this round!");}
+                roundResult.textContent = "You won this round!";}
             else {
                 computerScore++;
-                alert("You lose this round!");}
+                roundResult.textContent = "You lose this round!"}
         times++;
-        scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+        
                 checkWinner();
+                renderScore(computerScore, playerScore);
  }
 
 
 function renderScore(computerScore, playerScore) {
-        scoreWindow.innerText = `${playerScore}  : ${computerScore}`;
+        playerScoreNumber.innerText = `${playerScore}`;
+        aiScoreNumber.innerText= `${computerScore}`;
 }
 
 function checkWinner(){
     if(times === 5){
        if(playerScore > computerScore){
         resultWindow.innerText = `You won!`
-        return showResult();
+       /* return showResult();*/
        } else if (playerScore < computerScore){
         resultWindow.innerText = `You lost!`;
         return showResult();
     } else resultWindow.innerText = `It's a draw`;
-        return showResult();
+        /*return showResult();*/
  }
 }
 
@@ -71,9 +76,7 @@ function resetScore(){
     playerScore = 0;
     computerScore = 0;
     times = 0;
-    secondScreen.classList.add('hidden')
-    firstScreen.classList.remove('hidden')
-    scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+    renderScore(computerScore, playerScore)
 }
 
 function showResult(){

@@ -51,10 +51,18 @@ h1{
   }
   
   .round_alert{
+    display: flex;
+    align-items: center;
     grid-area: round_alert;
     justify-self: center;
-    align-self: end;
     margin-bottom: 0;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 2px;
+    padding:.5em;
+    height: 45px;
+    width: 60px;
+    font-size: 1.5vh;
   }
 
   .user_score {
