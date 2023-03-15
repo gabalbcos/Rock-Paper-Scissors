@@ -22,7 +22,7 @@ h1{
 /*Score Board*/
 .board_template{
     min-width: 240px;
-    min-height: 220px;
+    height: auto;
     border-width: 1px 0px;
     border-style: solid;
     border-color: #FFFDFD;
@@ -86,6 +86,7 @@ h1{
     grid-template-areas: 
       ". selection ."
       "button1 button2 button3"; 
+      padding-bottom: 1.5em;
   }
 
   .selection{
@@ -122,6 +123,23 @@ h1{
     margin: 0;
   }
 
-  /*Round Alert*/
+  /*Final Message*/
+.final_result{
+    text-align: center;   
+}
+
+.final_result p{
+    font-weight: 900;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.final_result button{
+    background: rgb(41, 40, 40);
+    border: 1px solid rgb(255, 255, 135);
+    border-radius: 5px;
+    padding: .5em;
+}
+
 
   
