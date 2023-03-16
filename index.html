@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <link href='https://fonts.googleapis.com/css?family=K2D' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Rock, Paper, Scissors Game</title>
 </head>
 <body>
@@ -17,6 +20,7 @@
     <div class="score_board board_template">
         <p class="score_title centered_text">Score</p>
         <div class="round_alert"></div>
+        <div class="ai_choice centered_text"></div>
         <p class="user_score name_tag centered_text">You:</p>
         <p class="score_p score_value centered_text" >0</p>
         <p class="ai_score name_tag centered_text">Ai:</p>
@@ -31,8 +35,8 @@
     </div>
 </div>
     <div class="final_result">
-        <p class="final_message">Victory!</p>
-        <button id="reset" >Play Again</button>
+        <p class="final_message"></p>
+        <button id="reset" class="hidden">Play Again</button>
     </div>
 
 

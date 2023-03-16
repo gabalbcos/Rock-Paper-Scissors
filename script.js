@@ -30,28 +30,38 @@ let roundResult = document.querySelector('.round_alert');
 let resultWindow = document.querySelector('.final_message');
 let firstScreen = document.getElementById('first_screen');
 let secondScreen = document.getElementById('final_message');
-
+let aiChoice = document.querySelector('.ai_choice');
 
 
 function getPlayerChoice(){
         var playerChoice = this.id;
         let computerChoice = getComputerChoice();
         //Round Comparison
-        if (playerChoice === computerChoice){
-            roundResult.textContent = "It's a draw!";}
-            else if ((playerChoice === 'paper' && computerChoice === 'rock')||
+            if (times >= 5){
+                alert('reset game!')
+                return
+            } else if ((playerChoice === 'paper' && computerChoice === 'rock')||
             (playerChoice === 'rock' && computerChoice === 'scissors')||
             (playerChoice === 'scissors' && computerChoice === 'paper')) {
+                aiChoice.textContent = `Ai choose: ${computerChoice}`;
                 playerScore++;
                 roundResult.textContent = "You won this round!";}
-            else {
+            else if ((playerChoice === 'rock' && computerChoice === 'paper')||
+            (playerChoice === 'scissors' && computerChoice === 'paper')||
+            (playerChoice === 'paper' && computerChoice === 'scissors')){
                 computerScore++;
-                roundResult.textContent = "You lose this round!"}
-        times++;
-        
-                checkWinner();
+                aiChoice.textContent = `Ai choose: ${computerChoice}`;
+                roundResult.textContent = "You lose this round!"
+            }else {
+                aiChoice.textContent = `Ai choose: ${computerChoice}`;
+                roundResult.textContent = "It's a draw!";
+            }
+                times++;
+                checkWinner(times);
                 renderScore(computerScore, playerScore);
- }
+        }
+
+
 
 
 function renderScore(computerScore, playerScore) {
@@ -59,28 +69,26 @@ function renderScore(computerScore, playerScore) {
         aiScoreNumber.innerText= `${computerScore}`;
 }
 
-function checkWinner(){
+function checkWinner(times){
     if(times === 5){
        if(playerScore > computerScore){
         resultWindow.innerText = `You won!`
        /* return showResult();*/
        } else if (playerScore < computerScore){
         resultWindow.innerText = `You lost!`;
-        return showResult();
+ 
     } else resultWindow.innerText = `It's a draw`;
         /*return showResult();*/
  }
+        resultWindow.innerText = "";
 }
 
 function resetScore(){
     playerScore = 0;
     computerScore = 0;
     times = 0;
+    roundResult.textContent = "Waiting new game"
     renderScore(computerScore, playerScore)
 }
 
-function showResult(){
-    secondScreen.classList.remove('hidden');
-    firstScreen.classList.add('hidden');
-}
 
