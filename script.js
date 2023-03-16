@@ -21,6 +21,12 @@ document.getElementById('paper').onclick = getPlayerChoice;
 document.getElementById('scissors').onclick = getPlayerChoice;
 document.getElementById('reset').onclick = resetScore;
 
+//button selector
+const btn_rock = document.getElementById('rock');
+const btn_paper = document.getElementById('paper');
+const btn_scissors = document.getElementById('scissors');
+const btn_reset = document.getElementById('reset')
+
 //score board
 let playerScoreWindow = document.querySelector('.user_score');
 let aiScoreWindow = document.querySelector('.ai_score');
@@ -29,7 +35,6 @@ let aiScoreNumber = document.querySelector('.score_c');
 let roundResult = document.querySelector('.round_alert');
 let resultWindow = document.querySelector('.final_message');
 let firstScreen = document.getElementById('first_screen');
-let secondScreen = document.getElementById('final_message');
 let aiChoice = document.querySelector('.ai_choice');
 
 
@@ -38,26 +43,28 @@ function getPlayerChoice(){
         let computerChoice = getComputerChoice();
         //Round Comparison
             if (times >= 5){
-                alert('reset game!')
+                checkWinner();
                 return
             } else if ((playerChoice === 'paper' && computerChoice === 'rock')||
             (playerChoice === 'rock' && computerChoice === 'scissors')||
             (playerChoice === 'scissors' && computerChoice === 'paper')) {
                 aiChoice.textContent = `Ai choose: ${computerChoice}`;
                 playerScore++;
-                roundResult.textContent = "You won this round!";}
+                roundResult.textContent = "You won this round!";
+                checkWinner()}
             else if ((playerChoice === 'rock' && computerChoice === 'paper')||
             (playerChoice === 'scissors' && computerChoice === 'paper')||
             (playerChoice === 'paper' && computerChoice === 'scissors')){
                 computerScore++;
                 aiChoice.textContent = `Ai choose: ${computerChoice}`;
-                roundResult.textContent = "You lose this round!"
+                roundResult.textContent = "You lose this round!";
+                checkWinner();
             }else {
                 aiChoice.textContent = `Ai choose: ${computerChoice}`;
                 roundResult.textContent = "It's a draw!";
+                checkWinner();
             }
                 times++;
-                checkWinner(times);
                 renderScore(computerScore, playerScore);
         }
 
@@ -69,19 +76,30 @@ function renderScore(computerScore, playerScore) {
         aiScoreNumber.innerText= `${computerScore}`;
 }
 
-function checkWinner(times){
+function toggleHidden(element) {
+    element.classList.toggle('hidden');
+}
+
+function checkWinner(times, computerScore, playerScore){
     if(times === 5){
+        toggleHidden(btn_reset)
+        toggleHidden(btn_scissors)
+        toggleHidden(btn_rock)
+        toggleHidden(btn_paper)
+        ;
        if(playerScore > computerScore){
-        resultWindow.innerText = `You won!`
+        resultWindow.textContent = `You won!`
        /* return showResult();*/
        } else if (playerScore < computerScore){
-        resultWindow.innerText = `You lost!`;
+        resultWindow.textContent = `You lost!`;
  
-    } else resultWindow.innerText = `It's a draw`;
+    } else resultWindow.textContent = `It's a draw`;
         /*return showResult();*/
  }
         resultWindow.innerText = "";
 }
+
+
 
 function resetScore(){
     playerScore = 0;
@@ -89,6 +107,8 @@ function resetScore(){
     times = 0;
     roundResult.textContent = "Waiting new game"
     renderScore(computerScore, playerScore)
+    toggleHidden(btn_reset)
+
 }
 
 
