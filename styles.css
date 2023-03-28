@@ -104,10 +104,10 @@ h1{
   }
 
   .selection{
-    grid-area: selection;
-    text-align: center;
     font-weight: 800;
     font-size: 16px;
+    grid-area: selection;
+    text-align: center;
   }
 
   .button1{
@@ -127,19 +127,20 @@ h1{
     background: rgb(41, 40, 40);
     border: 2px groove white;
     border-radius: 5px;
-    text-align: center;
     color: white;
-    width: 80px;
-    height: 80px;
     font-size: 1.2vh;
+    height: 80px;
+    text-align: center;
     transition: all;
     transition-duration: 1s;
+    width: 80px;
  
 }
 
   .play_button:hover{
     background-color: rgb(137, 204, 36);
     scale: 1.2;
+    cursor: pointer;
   }
 
   .play_button:focus{
