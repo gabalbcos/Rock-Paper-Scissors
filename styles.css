@@ -60,7 +60,7 @@ h1{
     border-radius: 2px;
     padding:.5em;
     height: 45px;
-    width: 60px;
+    min-width: 3rem;
     font-size: 1.5vh;
     transition-delay: 1s;
   }
