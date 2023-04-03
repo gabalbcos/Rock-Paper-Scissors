@@ -10,12 +10,16 @@ html{
 }
 
 /*Title*/ 
+header{
+  height: 25%;
+}
 
 h1{
     text-align: center;
-    font-size:2em;
+    font-size: 2rem;
     font-weight:bold;
-    height: 30px;
+    line-height: 2.5rem;
+    height: 100%;
 }
 
 /*Score Board*/
@@ -163,8 +167,10 @@ h1{
 
   /*Final Message*/
 .final_result{
+
     text-align: center;   
-}
+ 
+  }
 
 .final_result p{
     font-weight: 900;
@@ -204,5 +210,5 @@ h1{
 } 
 
 .hidden{
-    visibility: hidden;
+    display: none;
 }
