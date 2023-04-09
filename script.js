@@ -37,6 +37,8 @@ let resultWindow = document.querySelector('.final_message');
 let firstScreen = document.getElementById('first_screen');
 let buttonScreen = document.querySelector('.buttons_menu');
 let finalScreen = document.querySelector('.final_result');
+let finalScreenD = document.querySelector('.final_resultd');
+let finalScreenB = document.querySelector('.final_resultb');
 let aiChoice = document.querySelector('.ai_choice');
 let timesCount = document.querySelector('.times');
 
@@ -74,7 +76,7 @@ function getPlayerChoice(){
 
 
 
-function renderScore(computerScore, playerScore) {
+function renderScore() {
         playerScoreNumber.innerText = `${playerScore}`;
         aiScoreNumber.innerText= `${computerScore}`;
         timesCount.innerText = `${times}`
@@ -88,19 +90,22 @@ function toggleHidden(element) {
 function checkWinner(){
     if(parseInt(times) === 5){
         toggleHidden(finalScreen);
+        toggleHidden(finalScreenD);
+        toggleHidden(finalScreenB);
         toggleHidden(firstScreen);
         toggleHidden(buttonScreen);
         ;
        if(playerScore > computerScore){
-        resultWindow.textContent = `You won!`
-       /* return showResult();*/
+        return resultWindow.innerText = `You won!`
+       
        } else if (playerScore < computerScore){
-        resultWindow.textContent = `You lost!`;
+        return resultWindow.innerText = `You lost!`;
  
-    } else resultWindow.textContent = `It's a draw`;
-        /*return showResult();*/
+    } else 
+        return resultWindow.innerText = `It's a draw`;
+        
  }
-        resultWindow.innerText = "";
+        return resultWindow.innerText = "";
 }
 
 
@@ -112,6 +117,8 @@ function resetScore(){
     roundResult.textContent = "Waiting new game"
     renderScore(computerScore, playerScore)
     toggleHidden(finalScreen);
+    toggleHidden(finalScreenD);
+    toggleHidden(finalScreenB);
     toggleHidden(firstScreen);
     toggleHidden(buttonScreen);
 
