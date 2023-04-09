@@ -34,9 +34,9 @@ h1{
 
 .board_template{
   width: 100%;
-  height: 45vh;
-  padding: 1rem;
+  height: 30vh;
   border-top: 1px solid #FFFDFD;
+  padding-bottom: 15px;
 }
 
 .score_board {  
@@ -78,7 +78,7 @@ h1{
 
   .user_score {
     grid-area: user_score;
-    font-size: 2.5rem;
+    font-size: 2rem;
 
   }
   
@@ -105,7 +105,7 @@ h1{
     text-align: center;
     color: yellow;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 
   /*buttons menu*/
@@ -116,12 +116,11 @@ h1{
     grid-template-areas: 
       ". selection ."
       "button1 button2 button3"; 
-      padding-bottom: 1.5em;
   }
 
   .selection{
     font-weight: 800;
-    font-size: 16px;
+    font-size: 2rem;
     grid-area: selection;
     text-align: center;
   }
