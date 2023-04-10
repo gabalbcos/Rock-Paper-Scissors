@@ -9,75 +9,110 @@ let computerScore = 0;
 //List of options
 const options = ['rock', 'paper', 'scissors'];
 
-function getComputerChoice(){
-    let botChoice = options[Math.floor(Math.random()*3)];
+function getComputerChoice() {
+    let botChoice = options[Math.floor(Math.random() * 3)];
     console.log(`Computer choose: ${botChoice}`);
     return botChoice;
 }
 
 //button activations
-document.getElementById('rock').onclick =  getPlayerChoice;
+document.getElementById('rock').onclick = getPlayerChoice;
 document.getElementById('paper').onclick = getPlayerChoice;
 document.getElementById('scissors').onclick = getPlayerChoice;
 document.getElementById('reset').onclick = resetScore;
 
+//button selector
+const btn_rock = document.getElementById('rock');
+const btn_paper = document.getElementById('paper');
+const btn_scissors = document.getElementById('scissors');
+const btn_reset = document.getElementById('reset')
+
 //score board
-let scoreWindow = document.querySelector('.scores');;
-scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
-let resultWindow = document.querySelector('.results');
+let playerScoreWindow = document.querySelector('.user_score');
+let aiScoreWindow = document.querySelector('.ai_score');
+let playerScoreNumber = document.querySelector('.score_p');
+let aiScoreNumber = document.querySelector('.score_c');
+let roundResult = document.querySelector('.round_alert_text');
+let resultWindow = document.querySelector('.final_message');
 let firstScreen = document.getElementById('first_screen');
-let secondScreen = document.getElementById('final_message');
+let buttonScreen = document.querySelector('.buttons_menu');
+let finalScreen = document.querySelector('.final_result');
+let finalScreenD = document.querySelector('.final_resultd');
+let finalScreenB = document.querySelector('.final_resultb');
+let aiChoice = document.querySelector('.ai_choice');
+let timesCount = document.querySelector('.times');
 
 
-
-function getPlayerChoice(){
-        var playerChoice = this.id;
-        let computerChoice = getComputerChoice();
-        //Round Comparison
-        if (playerChoice === computerChoice){
-            alert("It's a draw!");}
-            else if ((playerChoice === 'paper' && computerChoice === 'rock')||
-            (playerChoice === 'rock' && computerChoice === 'scissors')||
-            (playerChoice === 'scissors' && computerChoice === 'paper')) {
-                playerScore++;
-                alert("You won this round!");}
-            else {
-                computerScore++;
-                alert("You lose this round!");}
-        times++;
-        scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
-                checkWinner();
- }
-
-
-function renderScore(computerScore, playerScore) {
-        scoreWindow.innerText = `${playerScore}  : ${computerScore}`;
+function getPlayerChoice() {
+    var playerChoice = this.id;
+    let computerChoice = getComputerChoice();
+    //Round Comparison
+    if (times >= 5) {
+        checkWinner();
+        return
+    } else if ((playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')) {
+        aiChoice.textContent = `Ai choose: ${computerChoice}`;
+        playerScore++;
+        roundResult.textContent = "You won this round!";
+        checkWinner()
+    } else if ((playerChoice === 'rock' && computerChoice === 'paper') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper') ||
+        (playerChoice === 'paper' && computerChoice === 'scissors')) {
+        computerScore++;
+        aiChoice.textContent = `Ai choose: ${computerChoice}`;
+        roundResult.textContent = "You lose this round!";
+        checkWinner();
+    } else {
+        aiChoice.textContent = `Ai choose: ${computerChoice}`;
+        roundResult.textContent = "It's a draw!";
+        checkWinner();
+    }
+    times++;
+    renderScore(computerScore, playerScore);
 }
 
-function checkWinner(){
-    if(times === 5){
-       if(playerScore > computerScore){
-        resultWindow.innerText = `You won!`
-        return showResult();
-       } else if (playerScore < computerScore){
-        resultWindow.innerText = `You lost!`;
-        return showResult();
-    } else resultWindow.innerText = `It's a draw`;
-        return showResult();
- }
+function renderScore() {
+    playerScoreNumber.innerText = `${playerScore}`;
+    aiScoreNumber.innerText = `${computerScore}`;
+    timesCount.innerText = `${times}`
+
 }
 
-function resetScore(){
+function toggleHidden(element) {
+    element.classList.toggle('hidden');
+}
+
+function checkWinner() {
+    if (parseInt(times) === 5) {
+        toggleHidden(finalScreen);
+        toggleHidden(finalScreenD);
+        toggleHidden(finalScreenB);
+        toggleHidden(firstScreen);
+        toggleHidden(buttonScreen);;
+        if (playerScore > computerScore) {
+            return resultWindow.innerText = `You won!`
+
+        } else if (playerScore < computerScore) {
+            return resultWindow.innerText = `You lost!`;
+
+        } else
+            return resultWindow.innerText = `It's a draw`;
+
+    }
+    return resultWindow.innerText = "";
+}
+
+function resetScore() {
     playerScore = 0;
     computerScore = 0;
     times = 0;
-    secondScreen.classList.add('hidden')
-    firstScreen.classList.remove('hidden')
-    scoreWindow.innerHTML = playerScore + ' : ' + computerScore;
+    roundResult.textContent = "Waiting new game"
+    renderScore(computerScore, playerScore)
+    toggleHidden(finalScreen);
+    toggleHidden(finalScreenD);
+    toggleHidden(finalScreenB);
+    toggleHidden(firstScreen);
+    toggleHidden(buttonScreen);
 }
-
-function showResult(){
-    secondScreen.classList.remove('hidden');
-    firstScreen.classList.add('hidden');
-}
-
