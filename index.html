@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="reset.css">
-     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <link href='https://fonts.googleapis.com/css?family=K2D' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,28 +14,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Rock, Paper, Scissors Game</title>
 </head>
+
 <body>
     <header>
         <h1>Rock, Paper, Scissors</h1>
     </header>
-   <div id="first_screen" class=""> 
-    <div class="score_board board_template">
-        <p class="score_title centered_text">Round:<span class="times">0</span></p>
-        <div class="round_alert"><p  class="round_alert_text"></p></div>
-        <div class="ai_choice centered_text"></div>
-        <p class="user_score name_tag centered_text">Your points:</p>
-        <p class="score_p score_value centered_text" >0</p>
-        <p class="ai_score name_tag centered_text">Ai points:</p>
-        <p class="score_c score_value centered_text">0</p>
+    <div id="first_screen" class="">
+        <div class="score_board board_template">
+            <p class="score_title centered_text">Round:<span class="times">0</span></p>
+            <div class="round_alert">
+                <p class="round_alert_text"></p>
+            </div>
+            <div class="ai_choice centered_text"></div>
+            <p class="user_score name_tag centered_text">Your points:</p>
+            <p class="score_p score_value centered_text">0</p>
+            <p class="ai_score name_tag centered_text">Ai points:</p>
+            <p class="score_c score_value centered_text">0</p>
+        </div>
     </div>
-</div>
     <div class="buttons_menu board_template ">
         <p class="selection centered_text">Choose your play:</p>
-        <button id="rock"  class="play_button button1 centered_text"><img src="icons/stone.png" alt="rock icon"><p>Rock</p></button>
-        <button id="paper"  class="play_button button2 centered_text"><img src="icons/paper.png" alt="paper icon"><p>Paper</p></button>
-        <button id="scissors"  class="play_button button3 centered_text"><img src="icons/scissor.png" alt="scissor"><p>Scissor</p></button>
+        <button id="rock" class="play_button button1 centered_text"><img src="icons/stone.png" alt="rock icon">
+            <p>Rock</p>
+        </button>
+        <button id="paper" class="play_button button2 centered_text"><img src="icons/paper.png" alt="paper icon">
+            <p>Paper</p>
+        </button>
+        <button id="scissors" class="play_button button3 centered_text"><img src="icons/scissor.png" alt="scissor">
+            <p>Scissor</p>
+        </button>
     </div>
-</div>
+    </div>
     <div class="final_result hidden">
         <div class="final_message centered_text final_resultd hidden"></div>
         <button id="reset" class="final_resultb hidden" onclick="resetScore">Play Again</button>
@@ -44,4 +54,5 @@
 
 </body>
 <script src="https://kit.fontawesome.com/5306e3a0a6.js" crossorigin="anonymous"></script>
+
 </html>

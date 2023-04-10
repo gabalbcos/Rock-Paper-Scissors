@@ -9,14 +9,14 @@ let computerScore = 0;
 //List of options
 const options = ['rock', 'paper', 'scissors'];
 
-function getComputerChoice(){
-    let botChoice = options[Math.floor(Math.random()*3)];
+function getComputerChoice() {
+    let botChoice = options[Math.floor(Math.random() * 3)];
     console.log(`Computer choose: ${botChoice}`);
     return botChoice;
 }
 
 //button activations
-document.getElementById('rock').onclick =  getPlayerChoice;
+document.getElementById('rock').onclick = getPlayerChoice;
 document.getElementById('paper').onclick = getPlayerChoice;
 document.getElementById('scissors').onclick = getPlayerChoice;
 document.getElementById('reset').onclick = resetScore;
@@ -43,43 +43,40 @@ let aiChoice = document.querySelector('.ai_choice');
 let timesCount = document.querySelector('.times');
 
 
-function getPlayerChoice(){
-        var playerChoice = this.id;
-        let computerChoice = getComputerChoice();
-        //Round Comparison
-            if (times >= 5){
-                checkWinner();
-                return
-            } else if ((playerChoice === 'paper' && computerChoice === 'rock')||
-            (playerChoice === 'rock' && computerChoice === 'scissors')||
-            (playerChoice === 'scissors' && computerChoice === 'paper')) {
-                aiChoice.textContent = `Ai choose: ${computerChoice}`;
-                playerScore++;
-                roundResult.textContent = "You won this round!";
-                checkWinner()}
-            else if ((playerChoice === 'rock' && computerChoice === 'paper')||
-            (playerChoice === 'scissors' && computerChoice === 'paper')||
-            (playerChoice === 'paper' && computerChoice === 'scissors')){
-                computerScore++;
-                aiChoice.textContent = `Ai choose: ${computerChoice}`;
-                roundResult.textContent = "You lose this round!";
-                checkWinner();
-            }else {
-                aiChoice.textContent = `Ai choose: ${computerChoice}`;
-                roundResult.textContent = "It's a draw!";
-                checkWinner();
-            }
-                times++;
-                renderScore(computerScore, playerScore);
-        }
-
-
-
+function getPlayerChoice() {
+    var playerChoice = this.id;
+    let computerChoice = getComputerChoice();
+    //Round Comparison
+    if (times >= 5) {
+        checkWinner();
+        return
+    } else if ((playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')) {
+        aiChoice.textContent = `Ai choose: ${computerChoice}`;
+        playerScore++;
+        roundResult.textContent = "You won this round!";
+        checkWinner()
+    } else if ((playerChoice === 'rock' && computerChoice === 'paper') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper') ||
+        (playerChoice === 'paper' && computerChoice === 'scissors')) {
+        computerScore++;
+        aiChoice.textContent = `Ai choose: ${computerChoice}`;
+        roundResult.textContent = "You lose this round!";
+        checkWinner();
+    } else {
+        aiChoice.textContent = `Ai choose: ${computerChoice}`;
+        roundResult.textContent = "It's a draw!";
+        checkWinner();
+    }
+    times++;
+    renderScore(computerScore, playerScore);
+}
 
 function renderScore() {
-        playerScoreNumber.innerText = `${playerScore}`;
-        aiScoreNumber.innerText= `${computerScore}`;
-        timesCount.innerText = `${times}`
+    playerScoreNumber.innerText = `${playerScore}`;
+    aiScoreNumber.innerText = `${computerScore}`;
+    timesCount.innerText = `${times}`
 
 }
 
@@ -87,30 +84,27 @@ function toggleHidden(element) {
     element.classList.toggle('hidden');
 }
 
-function checkWinner(){
-    if(parseInt(times) === 5){
+function checkWinner() {
+    if (parseInt(times) === 5) {
         toggleHidden(finalScreen);
         toggleHidden(finalScreenD);
         toggleHidden(finalScreenB);
         toggleHidden(firstScreen);
-        toggleHidden(buttonScreen);
-        ;
-       if(playerScore > computerScore){
-        return resultWindow.innerText = `You won!`
-       
-       } else if (playerScore < computerScore){
-        return resultWindow.innerText = `You lost!`;
- 
-    } else 
-        return resultWindow.innerText = `It's a draw`;
-        
- }
-        return resultWindow.innerText = "";
+        toggleHidden(buttonScreen);;
+        if (playerScore > computerScore) {
+            return resultWindow.innerText = `You won!`
+
+        } else if (playerScore < computerScore) {
+            return resultWindow.innerText = `You lost!`;
+
+        } else
+            return resultWindow.innerText = `It's a draw`;
+
+    }
+    return resultWindow.innerText = "";
 }
 
-
-
-function resetScore(){
+function resetScore() {
     playerScore = 0;
     computerScore = 0;
     times = 0;
@@ -121,7 +115,4 @@ function resetScore(){
     toggleHidden(finalScreenB);
     toggleHidden(firstScreen);
     toggleHidden(buttonScreen);
-
 }
-
-
