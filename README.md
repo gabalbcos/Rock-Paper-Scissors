@@ -1,4 +1,6 @@
 Rock, Paper, Scissors
+View project:
+https://htmlpreview.github.io/?https://github.com/gabalbcos/Rock-Paper-Scissors/blob/main/index.html
 ///
 Introduction
 
